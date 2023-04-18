@@ -53,7 +53,10 @@
 <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
     <c-container>
       <c-row class="justify-content-center">
-        <c-col md="4">
+        <c-col xs="10" sm="11" md="8" lg="7" xl="6" xxl="5">
+
+          
+
           <c-card class="p-4">
             <c-card-body>
 
@@ -62,8 +65,12 @@
                 [formGroup]="miFormulario"
                 (ngSubmit)="login()">
                 
-                <h1>Login</h1>
-                <p class="text-medium-emphasis">Sign In to your account</p>
+                <h3>Sistema de Gestión de Pruebas de Confianza</h3>
+                <div style="margin-right: auto; margin-left: auto; width: 200px;">
+                  <img cImg rounded src="assets/images/logo_jnj.png" thumbnail width="200" />
+                </div>
+                <hr>
+                <p class="text-medium-emphasis">Ingrese sus credenciales de usuario</p>
 
                 <c-input-group class="mb-3">
                     <span cInputGroupText>
@@ -72,7 +79,7 @@
                   <input 
                     autoComplete="username"
                     cFormControl
-                    placeholder="Username"
+                    placeholder="Nombre de Usuario"
                     formControlName="username"
                    />
                 </c-input-group>
@@ -84,7 +91,7 @@
                   <input
                     autoComplete="current-password"
                     cFormControl
-                    placeholder="Password"
+                    placeholder="Contraseña"
                     type="password"
                     formControlName="password"
                   />
@@ -93,12 +100,12 @@
                 <c-row>
                   <c-col xs="6">
                     <button cButton class="px-4" color="primary" type="submit" [disabled]="miFormulario.invalid">
-                      Login
+                      Ingresar
                     </button>
                   </c-col>
                   <c-col class="text-right" xs="6">
                     <button cButton class="px-0" color="link">
-                      Forgot password?
+                      ¿Olvidó su Contraseña?
                     </button>
                   </c-col>
                 </c-row>
