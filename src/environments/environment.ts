@@ -5,4 +5,3 @@ export const environment = {
     baseUrl: 'http://checktrust-user-ms.herokuapp.com'
 };
 
-//baseUrl es la url del backend

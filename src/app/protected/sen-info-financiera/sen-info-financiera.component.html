@@ -4,4 +4,954 @@
     <h2>Sentinel - Información Financiera</h2>
 </div>
 
+    <br>
 
+    <!-- <i class="far fa-circle-dot fa-2x" style="color: #dc3545"></i>
+    <i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #6c757d; --fa-secondary-color: #dc3545;"></i> -->
+    
+    <div class="container">
+        <form 
+            [formGroup]="miFormulario" 
+            (ngSubmit)="iniciarBusqueda()">
+
+            <div class="row" style="background-color: #D0D3D4; min-height: 60px;">
+                <div class="col d-flex align-items-center justify-content-start">
+                    <div class="form-outline me-2">DNI:</div>
+                    
+                    
+                    <div class="form-outline me-2" style="width: 14rem">
+                        <input type="search" id="form1" class="form-control" placeholder="Ingrese DNI" aria-label="Search" formControlName="dni"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid">Buscar</button>
+            
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <br>
+
+    <!-- INICIO DATOS DEL CANDIDATO -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-1" style="width: 120px;">
+                Candidato:
+            </div>
+            <div class="col-sm-11 fw-bold" style="width: 600px;">
+                Carlos Huamacto Nuñez
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-1" style="width: 120px;">
+                DNI:
+            </div>
+            <div class="col-sm-11 fw-bold" style="width: 600px;">
+                10034260
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-1" style="width: 120px;">
+                Actualización:
+            </div>
+            <div class="col-sm-11 fw-bold" style="width: 600px;">
+                14 de abril del 2023
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- RESUMEN FINANCIERO -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;">
+            <!-- <div class="col-sm-12 border text-white fw-bold text-center d-flex align-items-center justify-content-center" style="background-color: #1F618D; min-height: 35px;">
+                Datos Generales
+            </div> -->
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Tipo documento
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Ultima Actualización
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Nota
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Deuda Total
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Actual
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Previo
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                12m
+            </div>
+        </div>
+        
+        <div class="row" style="min-height: 60px;">
+            <div class="col border d-flex align-items-center">
+                DNI 48148549
+            </div>
+            <div class="col border d-flex align-items-center">
+                22/03/2023
+            </div>
+            <div class="col border d-flex align-items-center">
+                0.00
+            </div>
+            <div class="col border d-flex align-items-center">
+                43,959.52
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+        </div>
+        <div class="row" style="min-height: 60px;">
+            <div class="col border d-flex align-items-center">
+                RUC 2060558899
+            </div>
+            <div class="col border d-flex align-items-center">
+                30/03/2023
+            </div>
+            <div class="col border d-flex align-items-center">
+                0.00
+            </div>
+            <div class="col border d-flex align-items-center">
+                20,300.00
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+        </div>
+    </div>
+    
+    <br>
+
+    <!-- DATOS GENERALES -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold text-center d-flex align-items-center justify-content-center" >
+                Datos Generales
+            </div>
+        </div>
+
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha Nacimiento 
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Genero
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Digito Verificador
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Deuda Total
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Digito Verificador Anterior
+            </div>
+        </div>
+
+        <div class="row" style="min-height: 40px;">
+            <div class="col border d-flex align-items-center">
+                28/01/1985
+            </div>
+            <div class="col border d-flex align-items-center">
+                Masculino
+            </div>
+            <div class="col border d-flex align-items-center">
+                5
+            </div>
+            <div class="col border d-flex align-items-center">
+                43,959.52
+            </div>
+            <div class="col border d-flex align-items-center">
+                J
+            </div>
+        </div>
+    </div>
+    <!-- FIN DE DATOS GENERALES -->
+
+    <br>
+
+    <!-- DATOS PRINCIPALES -->
+    
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold text-center d-flex align-items-center justify-content-center" >
+                Datos Principales
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                RUC
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                2060558899
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Razon social
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                Digital Sil SAC
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Nombre comercial
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                Digital-Sil
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Tipo de Contribuyente
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                Pesona Natural con Negocio
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Estado del contribuyente
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                Activo
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Condicion del contribuyente
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                Habido
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Dependencia
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                Intendencia Lima MEPECO
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                CIUU
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                Consultoria de sistemas
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Inscripción
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                31/03/1998
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Inicio de actividades
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                31/03/1998
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Carnet Patronal
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                -.-
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Folio
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                -.-
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Asiento	
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                -.-
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                Direccion de domicilio fiscal	
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                Car 147 - Lima 15036
+            </div>
+        </div>
+    </div>
+    <!-- FIN DE DATOS PRINCIPALES -->
+
+    <br>
+
+    <!-- INFORMACION DNI CONSULTADO -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center justify-content-center" >
+                Información del DNI consultado
+            </div>
+        </div>
+        
+        <!-- SEMAFORO DE LOS ULTIMOS 12 MESES -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Semaforo de los ultimos 12 meses
+            </div>
+        </div>
+        <div class="row" style="min-height: 80px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                2022
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #dc3545"></i></div>
+                    <div class="text-center">Abril</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #ffc107"></i></div>
+                    <div class="text-center">Mayo</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+                    <div class="text-center">Junio</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #6c757d"></i></div>
+                    <div class="text-center">Setiembre</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #dc3545; --fa-secondary-color: #ffc107;"></i></div>
+                    <div class="text-center">Agosto</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #dc3545; --fa-secondary-color: #198754;"></i></div>
+                    <div class="text-center">Setiembre</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #ffc107; --fa-secondary-color: #dc3545;"></i></div>
+                    <div class="text-center">Octubre</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #ffc107; --fa-secondary-color: #198754;"></i></div>
+                    <div class="text-center">Noviembre</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #198754; --fa-secondary-color: #dc3545;"></i></div>
+                    <div class="text-center">Diciembre</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #198754; --fa-secondary-color: #ffc107;"></i></div>
+                    <div class="text-center">Enero</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #6c757d; --fa-secondary-color: #ffc107;"></i></div>
+                    <div class="text-center">Febrero</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #6c757d; --fa-secondary-color: #dc3545;"></i></div>
+                    <div class="text-center">Marzo</div>
+                </div>
+            </div>
+            <div class="col border fw-bold d-flex align-items-center justify-content-end">
+                2023
+            </div>
+        </div>
+
+        <!-- SBS MICROFINANZAS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                SBS/Microfinanzas
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Entidad 
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha Inf
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (2)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border d-flex align-items-center">
+                BCP
+            </div>
+            <div class="col border d-flex align-items-center">
+                23,559.02
+            </div>
+            <div class="col border d-flex align-items-center">
+                28/02/2023
+            </div>
+            <div class="col border d-flex align-items-center">
+                NOR
+            </div>
+            <div class="col border d-flex align-items-center">
+                10
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border d-flex align-items-center">
+                Interbank
+            </div>
+            <div class="col border d-flex align-items-center">
+                20,400.50
+            </div>
+            <div class="col border d-flex align-items-center">
+                28/02/2023
+            </div>
+            <div class="col border d-flex align-items-center">
+                NOR
+            </div>
+            <div class="col border d-flex align-items-center">
+                10
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border fw-bold d-flex align-items-center">
+                43,959.52
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+        </div>
+
+        <!-- DETALLE DE OTROS VENCIDOS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Detalle de otros vencidos
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fuente - Acreedor
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (3)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border fw-bold d-flex align-items-center">
+                0.00
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+
+
+        <!-- OTROS CREDITOS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Otros Creditos
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Entidad
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha Inf
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (2)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border fw-bold d-flex align-items-center">
+                0.00
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+
+    </div>
+    <!-- FIN DEL CONTAINER DE INFORMACION DEL DNI CONSULTADO -->
+
+    <br>
+
+    <!-- INFORMACION DEL RUC 000000000 ASOCIADO AL DNI CONSULTADO -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center justify-content-center" >
+                Informacion del RUC 2060558899 asociado al DNI consultado
+            </div>
+        </div>
+        
+        <!-- SEMAFORO DE LOS ULTIMOS 12 MESES -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Semaforo de los ultimos 12 meses
+            </div>
+        </div>
+        <div class="row" style="min-height: 80px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                2022
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #dc3545"></i></div>
+                    <div class="text-center">Abril</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #ffc107"></i></div>
+                    <div class="text-center">Mayo</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+                    <div class="text-center">Junio</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #6c757d"></i></div>
+                    <div class="text-center">Setiembre</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #dc3545; --fa-secondary-color: #ffc107;"></i></div>
+                    <div class="text-center">Agosto</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #dc3545; --fa-secondary-color: #198754;"></i></div>
+                    <div class="text-center">Setiembre</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #ffc107; --fa-secondary-color: #dc3545;"></i></div>
+                    <div class="text-center">Octubre</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #ffc107; --fa-secondary-color: #198754;"></i></div>
+                    <div class="text-center">Noviembre</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #198754; --fa-secondary-color: #dc3545;"></i></div>
+                    <div class="text-center">Diciembre</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #198754; --fa-secondary-color: #ffc107;"></i></div>
+                    <div class="text-center">Enero</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #6c757d; --fa-secondary-color: #ffc107;"></i></div>
+                    <div class="text-center">Febrero</div>
+                </div>
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #6c757d; --fa-secondary-color: #dc3545;"></i></div>
+                    <div class="text-center">Marzo</div>
+                </div>
+            </div>
+            <div class="col border fw-bold d-flex align-items-center justify-content-end">
+                2023
+            </div>
+        </div>
+
+        <!-- SBS MICROFINANZAS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                SBS/Microfinanzas
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Entidad 
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha Inf
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (2)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border d-flex align-items-center">
+                CMAC Caja Huancayo
+            </div>
+            <div class="col border d-flex align-items-center">
+                15,800.00
+            </div>
+            <div class="col border d-flex align-items-center">
+                28/02/2023
+            </div>
+            <div class="col border d-flex align-items-center">
+                NOR
+            </div>
+            <div class="col border d-flex align-items-center">
+                10
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border d-flex align-items-center">
+                Interbank
+            </div>
+            <div class="col border d-flex align-items-center">
+                4,500.00
+            </div>
+            <div class="col border d-flex align-items-center">
+                28/02/2023
+            </div>
+            <div class="col border d-flex align-items-center">
+                CPP
+            </div>
+            <div class="col border d-flex align-items-center">
+                10
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border fw-bold d-flex align-items-center">
+                20,300.00
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+        </div>
+
+        <!-- DETALLE DE OTROS VENCIDOS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Detalle de otros vencidos
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fuente - Acreedor
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (3)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border fw-bold d-flex align-items-center">
+                0.00
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+
+        <!-- OTROS CREDITOS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Otros Creditos
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Entidad
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha Inf
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (2)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border fw-bold d-flex align-items-center">
+                0.00
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+
+    </div>
+    <!-- FIN DEL CONTAINER DE INFORMACION DEL RUC 000000000 ASOCIADO AL DNI CONSULTADO -->
+
+    <br>
+
+    <!-- ES REPRESENTANTE LEGAL DE -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center justify-content-center" >
+                Es representante legal de:
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; ">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                RUC
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Razon Social
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Act
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Pre
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                12m
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha desde que ocupa cargo
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Cargo
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Estado
+            </div>
+        </div>
+        <div class="row" style="min-height: 60px;">
+            <div class="col border d-flex align-items-center">
+                2060885599
+            </div>
+            <div class="col border d-flex align-items-center">
+                Digital Sil SAC
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center">
+                28/02/2023
+            </div>
+            <div class="col border d-flex align-items-center">
+                Gerente General
+            </div>
+            <div class="col border d-flex align-items-center">
+                Activo
+            </div>
+        </div>
+        <div class="row" style="min-height: 60px;">
+            <div class="col border d-flex align-items-center">
+                2060869451
+            </div>
+            <div class="col border d-flex align-items-center">
+                H&A Investmen SAC
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center">
+                15/02/1998
+            </div>
+            <div class="col border d-flex align-items-center">
+                Gerente General
+            </div>
+            <div class="col border d-flex align-items-center">
+                Baja de oficio
+            </div>
+        </div>
+
+    </div>
+    <!-- FIN DEL CONTAINER DE ES REPRESENTANTE LEGAL DE -->
+
+    <br>
+    <br>

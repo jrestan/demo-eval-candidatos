@@ -5,7 +5,23 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 @Component({
   selector: 'app-up-menu',
   templateUrl: './up-menu.component.html',
-  styles: [`
+  styles: [  ]
+})
+export class UpMenuComponent {
+
+  constructor(private router: Router,
+    private authService: AuthService) {}
+
+
+  logout(){
+    this.router.navigateByUrl('/auth');
+    this.authService.logout();
+  }
+
+}
+
+/*
+`
     body {
       background: #f2f2f2;
     }
@@ -26,17 +42,4 @@ import { AuthService } from 'src/app/auth/services/auth.service';
       margin-top: 0;
     }
   `
-  ]
-})
-export class UpMenuComponent {
-
-  constructor(private router: Router,
-    private authService: AuthService) {}
-
-
-  logout(){
-    this.router.navigateByUrl('/auth');
-    this.authService.logout();
-  }
-
-}
+*/

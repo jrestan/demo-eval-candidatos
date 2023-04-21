@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ProtectedRoutingModule } from './protected-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -12,11 +13,12 @@ import { PjRegDeudoresComponent } from './pj-reg-deudores/pj-reg-deudores.compon
 import { MpProcDisciplinComponent } from './mp-proc-disciplin/mp-proc-disciplin.component';
 import { SerSancionesComponent } from './ser-sanciones/ser-sanciones.component';
 
+/*
 import { ImgModule } from '@coreui/angular'
 import { GridModule } from '@coreui/angular'
 import { TableModule } from '@coreui/angular'
 import { UtilitiesModule } from '@coreui/angular'
-
+*/
 
 @NgModule({
   declarations: [
@@ -33,10 +35,12 @@ import { UtilitiesModule } from '@coreui/angular'
   imports: [
     CommonModule,
     ProtectedRoutingModule,
-    ImgModule,
+    ReactiveFormsModule
+
+    /*ImgModule,
     GridModule,
     TableModule,
-    UtilitiesModule
+    UtilitiesModule*/
   ]
 })
 export class ProtectedModule { }
