@@ -447,8 +447,8 @@
             <div class="col border d-flex align-items-center">
                 28/02/2023
             </div>
-            <div class="col border d-flex align-items-center">
-                NOR
+            <div class="col border d-flex align-items-center justify-content-center">
+                <span class="badge bg-success" style="font-size: 13px;">NOR</span>
             </div>
             <div class="col border d-flex align-items-center">
                 10
@@ -464,8 +464,8 @@
             <div class="col border d-flex align-items-center">
                 28/02/2023
             </div>
-            <div class="col border d-flex align-items-center">
-                NOR
+            <div class="col border d-flex align-items-center justify-content-center">
+                <span class="badge bg-warning" style="font-size: 13px;">CPP</span>
             </div>
             <div class="col border d-flex align-items-center">
                 10
@@ -587,6 +587,28 @@
 
     </div>
     <!-- FIN DEL CONTAINER DE INFORMACION DEL DNI CONSULTADO -->
+
+    <br>
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row">
+            <div class="col d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <span class="badge bg-success me-2" style="font-size: 11px;">NOR</span>
+                <span class="me-2">Normal - </span>
+                <span class="badge bg-warning me-2" style="font-size: 11px;">CPP</span>
+                <span class="me-2">Con Problemas Potenciales - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#BA4A00;">DEF</span>
+                <span class="me-2">Deficiente - </span>
+                <span class="badge bg-danger me-2" style="font-size: 11px;">DUD</span>
+                <span class="me-2">Dudoso - </span>
+                <span class="badge text-dark me-2" style="font-size: 11px; background-color:#D7DBDD;">PER</span>   
+                <span class="me-2">Pérdida - </span>
+                <span class="badge bg-secondary me-2" style="font-size: 11px;">SCAL</span>
+                <span class="me-2">Sin Calificación</span>
+                
+            </div>
+        </div>
+    </div>
 
     <br>
 
@@ -721,8 +743,8 @@
             <div class="col border d-flex align-items-center">
                 28/02/2023
             </div>
-            <div class="col border d-flex align-items-center">
-                NOR
+            <div class="col border d-flex align-items-center justify-content-center">
+                <span class="badge" style="font-size: 13px; background-color:#BA4A00;">DEF</span>
             </div>
             <div class="col border d-flex align-items-center">
                 10
@@ -738,8 +760,8 @@
             <div class="col border d-flex align-items-center">
                 28/02/2023
             </div>
-            <div class="col border d-flex align-items-center">
-                CPP
+            <div class="col border d-flex align-items-center justify-content-center">
+                <span class="badge bg-danger" style="font-size: 13px;">DUD</span>
             </div>
             <div class="col border d-flex align-items-center">
                 10
@@ -862,6 +884,37 @@
     <!-- FIN DEL CONTAINER DE INFORMACION DEL RUC 000000000 ASOCIADO AL DNI CONSULTADO -->
 
     <br>
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row">
+            <div class="col d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <span class="badge bg-success me-2" style="font-size: 11px;">NOR</span>
+                <span class="me-2">Normal - </span>
+                <span class="badge bg-warning me-2" style="font-size: 11px;">CPP</span>
+                <span class="me-2">Con Problemas Potenciales - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#BA4A00;">DEF</span>
+                <span class="me-2">Deficiente - </span>
+                <span class="badge bg-danger me-2" style="font-size: 11px;">DUD</span>
+                <span class="me-2">Dudoso - </span>
+                <span class="badge text-dark me-2" style="font-size: 11px; background-color:#D7DBDD;">PER</span>
+                <span class="me-2">Pérdida - </span>
+                <span class="badge bg-secondary me-2" style="font-size: 11px;">SCAL</span>
+                <span class="me-2">Sin Calificación</span>
+                
+            </div>
+        </div>
+        
+        
+        <!-- <div class="col border d-flex align-items-center justify-content-center">
+        </div>
+        <div class="col border d-flex align-items-center justify-content-center">
+        </div>
+        <div class="col border d-flex align-items-center justify-content-center">
+        </div> -->
+    </div>
+
+    <br>
+
 
     <!-- ES REPRESENTANTE LEGAL DE -->
 
