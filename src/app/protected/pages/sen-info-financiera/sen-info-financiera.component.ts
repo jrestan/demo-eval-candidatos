@@ -23,6 +23,7 @@ export class SenInfoFinancieraComponent {
   datosEncontrados: boolean = false;
   errorBusqueda: boolean = false;
   messageError: string = "";
+  inibusqueda : boolean = false;
     
   senInfoFinanciera!: ISenInfoFinResponse;
 
@@ -51,6 +52,7 @@ export class SenInfoFinancieraComponent {
 
     this.errorBusqueda = false;
     this.datosEncontrados = false;
+    this.inibusqueda = true;
 
     const {dni} = this.miFormulario.value;
 
@@ -63,12 +65,14 @@ export class SenInfoFinancieraComponent {
           this.validarDatosEncontrados(infoFinResp);
 
           this.datosEncontrados = true;
+          this.inibusqueda = false;
 
         },(err)=>{  //(err: HttpErrorResponse)
           const msgError = 'Error: ' + err.status + '. '+err.message;
           console.log('Error', msgError);
           this.errorBusqueda = true;
           this.messageError = msgError;
+          this.inibusqueda = false;
         });
 
     //this.datosEncontrados = false;

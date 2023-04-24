@@ -31,11 +31,16 @@
     
     <br>
 
-    <div class="container" *ngIf="errorBusqueda">
+    <div class="container" *ngIf="errorBusqueda||inibusqueda">
         <div class="row">
             <div class="col" style="padding-left: 0px; padding-right: 0px;">
-                <div class="alert alert-danger" role="alert">
+
+                <div *ngIf="errorBusqueda" class="alert alert-danger" role="alert">
                     {{messageError}}
+                </div>
+                
+                <div *ngIf="inibusqueda" class="alert alert-info">
+                    Espere por favor...
                 </div>
             </div>
         </div>
