@@ -1,0 +1,737 @@
+<hr>
+
+<div style="margin-right: auto; margin-left: auto; width: 800px; text-align: center">
+    <h2>Información Financiera</h2>
+</div>
+
+    <br>
+
+    <!-- <i class="far fa-circle-dot fa-2x" style="color: #dc3545"></i>
+    <i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #6c757d; --fa-secondary-color: #dc3545;"></i> -->
+    
+    <div class="container">
+        <form 
+            [formGroup]="miFormulario" 
+            (ngSubmit)="iniciarBusqueda()">
+
+            <div class="row" style="background-color: #D0D3D4; min-height: 60px;">
+                <div class="col d-flex align-items-center justify-content-start">
+                    <div class="form-outline me-2">DNI:</div>
+                    
+                    
+                    <div class="form-outline me-2" style="width: 14rem">
+                        <input type="text" (keypress)="validarSoloNumeros($event)" maxlength="8" id="form1" class="form-control" placeholder="Ingrese DNI" aria-label="Search" formControlName="dni"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid">Buscar</button>
+            
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <br>
+
+    <div class="container" *ngIf="errorBusqueda">
+        <div class="row">
+            <div class="col" style="padding-left: 0px; padding-right: 0px;">
+                <div class="alert alert-danger" role="alert">
+                    {{messageError}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INICIO DATOS DEL CANDIDATO -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-1" style="width: 120px;">
+                Candidato:
+            </div>
+            <div class="col-sm-11 fw-bold" style="width: 600px;">
+                {{ senInfoFinanciera.fullname }}
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-1" style="width: 120px;">
+                {{ senInfoFinanciera.document_type }}
+            </div>
+            <div class="col-sm-11 fw-bold" style="width: 600px;">
+                {{ senInfoFinanciera.document_number }}
+            </div>
+        </div>
+        <div class="row" style="min-height: 30px;">
+            <div class="col-sm-1" style="width: 120px;">
+                Actualización:
+            </div>
+            <div class="col-sm-11 fw-bold" style="width: 600px;">
+                {{ senInfoFinanciera.financial_health[0]?.['financial_summary']?.['processed_at'] || '' | date:'longDate':'':'es-PE' }}
+                <!-- Ejemplo de validar los campos null -->
+                <!-- {{ senInfoFinanciera.financial_health[1]?.['other_credits'][1]?.['name'] || 'XXX' }} -->
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- RESUMEN FINANCIERO -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;">
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Tipo documento
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Ultima Actualización
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Nota
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Deuda Total
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Actual
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                Previo
+            </div>
+            <div class="col text-white fw-bold text-center d-flex align-items-center justify-content-center">
+                12m
+            </div>
+        </div>
+
+        <div class="row" style="min-height: 60px;" 
+            *ngFor="let item of senInfoFinanciera.financial_health; let i=index">
+
+            <div class="col border d-flex align-items-center">
+                {{ item.document_type+' '+item.document_number }}  <!-- DNI 48148549 -->
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{ item.financial_summary.processed_at||'' | date:'dd/MM/yyyy' }}  <!-- 22/03/2023 -->
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{ item.financial_summary.mark||'0.00' }}  <!-- 0.00 -->
+            </div>
+            <div class="col border d-flex align-items-center justify-content-end">
+                {{ item.financial_summary.debts_total||'0.00' | number:'1.2-2' }} <!-- 43,959.52 -->
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" [style]="getStyleColor(item.financial_summary.score_current)"></i></div>
+                <!-- <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div> -->
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" [style]="getStyleColor(item.financial_summary.score_prev)"></i></div>
+                <!-- <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" style="color: #198754"></i></div> -->
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" [style]="getStyleColorDual(item.financial_summary.score_both)"></i></div>
+                <!-- <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" style="--fa-primary-color: #dc3545; --fa-secondary-color: #ffc107;"></i></i></div> -->
+            </div>
+        </div>
+    </div>
+    
+    <br>
+
+    <!-- DATOS GENERALES -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold text-center d-flex align-items-center justify-content-center" >
+                Datos Generales
+            </div>
+        </div>
+
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha Nacimiento 
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Genero
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Digito Verificador
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Deuda Total
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Digito Verificador Anterior
+            </div>
+        </div>
+
+        <div class="row" style="min-height: 40px;">
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{ senInfoFinanciera.birthday }}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{ senInfoFinanciera.gender }}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                XXXXXXX
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                XXXXXXX
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                XXXXXXX
+            </div>
+        </div>
+    </div>
+    <!-- FIN DE DATOS GENERALES -->
+
+    <br>
+
+    <!-- DATOS PRINCIPALES -->
+    
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold text-center d-flex align-items-center justify-content-center" >
+                Datos Principales
+            </div>
+        </div>
+
+        <div class="row" style="min-height: 30px;" 
+            *ngFor="let item of datosPrinc; let i=index">
+
+            <div class="col-sm-4 border text-white d-flex align-items-center" style="background-color: #A6ACAF;">
+                {{item[0]}}
+            </div>
+            <div class="col-sm-8 border d-flex align-items-center">
+                {{item[2]||''}}
+            </div>
+        </div>
+    </div>
+    <!-- FIN DE DATOS PRINCIPALES -->
+
+    <br>
+
+    <!-- INFORMACION DNI CONSULTADO -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center justify-content-center" >
+                Información del DNI consultado
+            </div>
+        </div>
+        
+        <!-- SEMAFORO DE LOS ULTIMOS 12 MESES -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Semaforo de los ultimos 12 meses
+            </div>
+        </div>
+        <div class="row" style="min-height: 80px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                {{ obtenerYearAnterior() }}
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;"
+                *ngFor="let semaforo of obtenerSemaforoUltimosDoceMeses(senInfoFinanciera.financial_health[0]?.financial_summary?.credit_score || '')">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" [style]="semaforo.style"></i></div>
+                    <div class="text-center">{{ semaforo.mes }}</div>
+                </div>
+            </div>
+            <div class="col border fw-bold d-flex align-items-center justify-content-end">
+                {{ obtenerYearActual() }}
+            </div>
+        </div>
+
+        <!-- SBS MICROFINANZAS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                SBS/Microfinanzas
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Entidad 
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha Inf
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (2)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;"
+            *ngFor="let microfinanz of senInfoFinanciera.financial_health[0]?.debts_microfinance || []">
+
+            <div class="col border d-flex align-items-center">
+                {{microfinanz.name}}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-end">
+                {{ microfinanz.total_debt | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{microfinanz.processed_at | date:'MMMM yyyy'}}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                <span class="badge" [style]="obtenerStyleCalificacion(microfinanz.score)">{{microfinanz.score}}</span>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{microfinanz.debt_delay_days}}
+            </div>
+        </div>
+
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border fw-bold d-flex align-items-center justify-content-end">
+                {{ senInfoFinanciera.financial_health[0]?.financial_summary?.debts_microfinance_total || '0.00' | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+        </div>
+
+        <!-- DETALLE DE OTROS VENCIDOS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Detalle de otros vencidos
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fuente - Acreedor
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (3)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;"
+            *ngFor="let debts_overdue of senInfoFinanciera.financial_health[0]?.debts_overdue || []">
+
+            <div class="col border d-flex align-items-center">
+                {{debts_overdue.name}}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                <span class="badge" [style]="obtenerStyleCalificacion(debts_overdue.score)">{{debts_overdue.score}}</span>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-end">
+                {{debts_overdue.total_debt | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{debts_overdue.debt_delay_days}}
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border fw-bold d-flex align-items-center justify-content-end">
+                {{ senInfoFinanciera.financial_health[0]?.financial_summary?.debts_overdue_total || '0.00' | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+
+
+        <!-- OTROS CREDITOS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Otros Creditos
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Entidad
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha Inf
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (2)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+
+        <div class="row" style="min-height: 40px;"
+            *ngFor="let other_credits of senInfoFinanciera.financial_health[0]?.other_credits || []">
+
+            <div class="col border d-flex align-items-center">
+                {{other_credits.name}}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-end">
+                {{other_credits.total_debt | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                XXXXXXXXX
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                <span class="badge" [style]="obtenerStyleCalificacion(other_credits.score)">{{other_credits.score}}</span>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{other_credits.debt_delay_days}}
+            </div>
+        </div>
+        
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border fw-bold d-flex align-items-center justify-content-end">
+                {{ senInfoFinanciera.financial_health[0]?.financial_summary?.debts_others_total || '0.00' | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+
+    </div>
+    <!-- FIN DEL CONTAINER DE INFORMACION DEL DNI CONSULTADO -->
+
+    <br>
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row">
+            <div class="col d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <span class="badge me-2" style="font-size: 11px; background-color:#1E8449;">NOR</span>
+                <span class="me-2">Normal - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#ffc107;">CPP</span>
+                <span class="me-2">Con Problemas Potenciales - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#BA4A00;">DEF</span>
+                <span class="me-2">Deficiente - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#dc3545">DUD</span>
+                <span class="me-2">Dudoso - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#D7DBDD; color:#17202A">PER</span>   
+                <span class="me-2">Pérdida - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#6c757d">SCAL</span>
+                <span class="me-2">Sin Calificación</span>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- INFORMACION DEL RUC 000000000 ASOCIADO AL DNI CONSULTADO -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center justify-content-center" >
+                Informacion del RUC 2060558899 asociado al DNI consultado
+            </div>
+        </div>
+        
+        <!-- SEMAFORO DE LOS ULTIMOS 12 MESES -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Semaforo de los ultimos 12 meses
+            </div>
+        </div>
+        <div class="row" style="min-height: 80px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                {{ obtenerYearAnterior() }}
+            </div>
+            <div class="col border d-flex align-items-end justify-content-center" style="font-size: 14px;"
+                *ngFor="let semaforo of obtenerSemaforoUltimosDoceMeses(senInfoFinanciera.financial_health[1]?.financial_summary?.credit_score || '')">
+                <div>
+                    <div class="text-center" style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" [style]="semaforo.style"></i></div>
+                    <div class="text-center">{{ semaforo.mes }}</div>
+                </div>
+            </div>
+            <div class="col border fw-bold d-flex align-items-center justify-content-end">
+                {{ obtenerYearActual() }}
+            </div>
+        </div>
+
+        <!-- SBS MICROFINANZAS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                SBS/Microfinanzas
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Entidad 
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha Inf
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (2)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+        
+        <div class="row" style="min-height: 40px;"
+            *ngFor="let microfinanz of senInfoFinanciera.financial_health[1]?.debts_microfinance || []">
+
+            <div class="col border d-flex align-items-center">
+                {{microfinanz.name}}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-end">
+                {{ microfinanz.total_debt | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{microfinanz.processed_at | date:'MMMM yyyy'}}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                <span class="badge" [style]="obtenerStyleCalificacion(microfinanz.score)">{{microfinanz.score}}</span>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{microfinanz.debt_delay_days}}
+            </div>
+        </div>
+        
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border fw-bold d-flex align-items-center justify-content-end">
+                {{ senInfoFinanciera.financial_health[1]?.financial_summary?.debts_microfinance_total || '0.00' | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+            <div class="col border d-flex align-items-center">
+                
+            </div>
+        </div>
+
+        <!-- DETALLE DE OTROS VENCIDOS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Detalle de otros vencidos
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fuente - Acreedor
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (3)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+
+        <div class="row" style="min-height: 40px;"
+            *ngFor="let debts_overdue of senInfoFinanciera.financial_health[1]?.debts_overdue || []">
+
+            <div class="col border d-flex align-items-center">
+                {{debts_overdue.name}}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                <span class="badge" [style]="obtenerStyleCalificacion(debts_overdue.score)">{{debts_overdue.score}}</span>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-end">
+                {{debts_overdue.total_debt | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{debts_overdue.debt_delay_days}}
+            </div>
+        </div>
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border fw-bold d-flex align-items-center justify-content-end">
+                {{ senInfoFinanciera.financial_health[1]?.financial_summary?.debts_overdue_total || '0.00' | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+
+        <!-- OTROS CREDITOS -->
+
+        <div class="row" style="background-color: #626567; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center" >
+                Otros Creditos
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; min-height: 35px;">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Entidad
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Monto
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha Inf
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Calif (2)
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Dias Vencidos
+            </div>
+        </div>
+        
+        <div class="row" style="min-height: 40px;"
+            *ngFor="let other_credits of senInfoFinanciera.financial_health[1]?.other_credits || []">
+
+            <div class="col border d-flex align-items-center">
+                {{other_credits.name}}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-end">
+                {{other_credits.total_debt | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                XXXXXXXXX
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                <span class="badge" [style]="obtenerStyleCalificacion(other_credits.score)">{{other_credits.score}}</span>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {{other_credits.debt_delay_days}}
+            </div>
+        </div>
+
+        <div class="row" style="min-height: 40px;">
+            <div class="col border fw-bold d-flex align-items-center">
+                Total
+            </div>
+            <div class="col border fw-bold d-flex align-items-center justify-content-end">
+                {{ senInfoFinanciera.financial_health[1]?.financial_summary?.debts_others_total || '0.00' | number:'1.2-2' }}
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+            <div class="col border d-flex align-items-center">
+            </div>
+        </div>
+
+    </div>
+    <!-- FIN DEL CONTAINER DE INFORMACION DEL RUC 000000000 ASOCIADO AL DNI CONSULTADO -->
+
+    <br>
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row">
+            <div class="col d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <span class="badge me-2" style="font-size: 11px; background-color:#1E8449;">NOR</span>
+                <span class="me-2">Normal - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#ffc107;">CPP</span>
+                <span class="me-2">Con Problemas Potenciales - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#BA4A00;">DEF</span>
+                <span class="me-2">Deficiente - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#dc3545">DUD</span>
+                <span class="me-2">Dudoso - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#D7DBDD; color:#17202A">PER</span>   
+                <span class="me-2">Pérdida - </span>
+                <span class="badge me-2" style="font-size: 11px; background-color:#6c757d">SCAL</span>
+                <span class="me-2">Sin Calificación</span>
+            </div>
+        </div>
+    </div>
+    
+    <br>
+    
+    <!-- ES REPRESENTANTE LEGAL DE -->
+
+    <div class="container" *ngIf="datosEncontrados">
+        <div class="row" style="background-color: #1F618D; min-height: 35px;"> 
+            <div class="col-sm-12 text-white fw-bold d-flex align-items-center justify-content-center" >
+                Es representante legal de:
+            </div>
+        </div>
+        <div class="row" style="background-color: #A6ACAF; ">
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                RUC
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Razon Social
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Act
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Pre
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                12m
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Fecha desde que ocupa cargo
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Cargo
+            </div>
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+                Estado
+            </div>
+        </div>
+        <div class="row" style="min-height: 60px;">
+            <div class="col border d-flex align-items-center justify-content-center">
+                0000000000
+            </div>
+            <div class="col border d-flex align-items-center">
+                XXXXXXXXXXXX
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" [style]="obtenerStyleColor_Codigo('1')"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" [style]="obtenerStyleColor_Codigo('3')"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" [style]="obtenerStyleColor_Codigo('11')"></i></div>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                00/00/0000
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                XXXXXXXXXXXX
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                XXXXXXXXXXXX
+            </div>
+        </div>
+        
+    </div>
+    <!-- FIN DEL CONTAINER DE ES REPRESENTANTE LEGAL DE -->
+
+    <br>
+    <br>

@@ -1,23 +1,34 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { ProtectedRoutingModule } from './protected-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UpMenuComponent } from './up-menu/up-menu.component';
-import { HomeComponent } from './home/home.component';
-import { SenInfoFinancieraComponent } from './sen-info-financiera/sen-info-financiera.component';
-import { SenSancionadosOsceComponent } from './sen-sancionados-osce/sen-sancionados-osce.component';
-import { PjProcDisciplinComponent } from './pj-proc-disciplin/pj-proc-disciplin.component';
-import { PjRegDeudoresComponent } from './pj-reg-deudores/pj-reg-deudores.component';
-import { MpProcDisciplinComponent } from './mp-proc-disciplin/mp-proc-disciplin.component';
-import { SerSancionesComponent } from './ser-sanciones/ser-sanciones.component';
+
+//Pages
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { UpMenuComponent } from './pages/up-menu/up-menu.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SenInfoFinancieraComponent } from './pages/sen-info-financiera/sen-info-financiera.component';
+import { SenSancionadosOsceComponent } from './pages/sen-sancionados-osce/sen-sancionados-osce.component';
+import { PjProcDisciplinComponent } from './pages/pj-proc-disciplin/pj-proc-disciplin.component';
+import { PjRegDeudoresComponent } from './pages/pj-reg-deudores/pj-reg-deudores.component';
+import { MpProcDisciplinComponent } from './pages/mp-proc-disciplin/mp-proc-disciplin.component';
+import { SerSancionesComponent } from './pages/ser-sanciones/ser-sanciones.component';
+
+//Cambiar el locale de la app
+import localeEsPe from '@angular/common/locales/es-PE';
+//import localeFr from '@angular/common/locales/fr';
+import {registerLocaleData} from '@angular/common'
+registerLocaleData(localeEsPe);
+//registerLocaleData(localeFr);
 
 /*
 import { ImgModule } from '@coreui/angular'
 import { GridModule } from '@coreui/angular'
 import { TableModule } from '@coreui/angular'
 import { UtilitiesModule } from '@coreui/angular'
+import { AppComponent } from '../app.component';
 */
 
 @NgModule({
@@ -41,6 +52,7 @@ import { UtilitiesModule } from '@coreui/angular'
     GridModule,
     TableModule,
     UtilitiesModule*/
-  ]
+  ],
+  providers: [DatePipe, {provide: LOCALE_ID, useValue: 'es-PE' }],
 })
 export class ProtectedModule { }

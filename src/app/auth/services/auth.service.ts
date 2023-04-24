@@ -31,11 +31,10 @@ export class AuthService {
       .pipe(
         tap(resp=> {
           if(resp.ok){
-            localStorage.setItem('token', resp.token!);
+            //localStorage.setItem('token', resp.token!);
+            sessionStorage.setItem('token', resp.token!);
 
             /*
-            //Al final ya no es necesario poner este codigo aqui, basta con el que esta en el validarToken()
-            //esto se debe a que validarToken() esta dentro de los guards
             this._usuario={
               name: resp.name!,
               uid: resp.uid!,
@@ -62,11 +61,10 @@ export class AuthService {
         tap(resp=> {
           
           //if(resp.ok){
-            localStorage.setItem('token', resp.token!);
+            //localStorage.setItem('token', resp.token!);
+            sessionStorage.setItem('token', resp.token!);
             
             /*
-            //Al final ya no es necesario poner este codigo aqui, basta con el que esta en el validarToken()
-            //esto se debe a que validarToken() esta dentro de los guards
             this._usuario={
               name: resp.name!,
               uid: resp.uid!,
@@ -90,7 +88,7 @@ export class AuthService {
     //const url = `${this.baseUrl}/auth/renew`;
     //const headers = new HttpHeaders().set('x-token', localStorage.getItem('token')||'');
     
-    const myRawToken = localStorage.getItem('token')||'';
+    const myRawToken = sessionStorage.getItem('token')||'';  //localStorage.getItem('token')||'';
 
     console.log("myRawToken",myRawToken);
     
@@ -110,8 +108,6 @@ export class AuthService {
     return this.http.get<AuthResponse>(url, {headers: headers})
             .pipe(
               map(resp=>{
-
-                //Se vuelve a ejecutar esto porque al revalidar genera un nuevo token
                 localStorage.setItem('token', resp.token!);
                 this._usuario={
                   name: resp.name!,
@@ -127,7 +123,7 @@ export class AuthService {
   }
 
   logout(){
-    //localStorage.removeItem('token');
-    localStorage.clear();
+    sessionStorage.removeItem('token');
+    //localStorage.clear();
   }
 }
