@@ -117,14 +117,14 @@
                 {{ item.financial_summary.debts_total||'0.00' | number:'1.2-2' }} <!-- 43,959.52 -->
             </div>
             <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
-                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" [style]="getStyleColor(item.financial_summary.score_current)"></i></div>
-                <!-- <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" [style]="obtenerStyleColor_Codigo('1')"></i></div> -->
+                <!-- <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" [style]="getStyleColor(item.financial_summary.score_current)"></i></div> -->
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" [style]="obtenerStyleColor_Codigo(item.financial_summary.score_current)"></i></div>
             </div>
             <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
-                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x" [style]="getStyleColor(item.financial_summary.score_prev)"></i></div>
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" [style]="obtenerStyleColor_Codigo(item.financial_summary.score_prev)"></i></div>
             </div>
             <div class="col border d-flex align-items-center justify-content-center" style="font-size: 14px;">
-                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" [style]="getStyleColorDual(item.financial_summary.score_both)"></i></div>
+                <div style="font-size: 22px;"><i class="far fa-circle-dot fa-2x dual" [style]="obtenerStyleColor_Codigo(item.financial_summary.score_both)"></i></div>
             </div>
         </div>
     </div>

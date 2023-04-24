@@ -50,6 +50,7 @@ export class SenInfoFinancieraComponent {
   iniciarBusqueda(){
 
     this.errorBusqueda = false;
+    this.datosEncontrados = false;
 
     const {dni} = this.miFormulario.value;
 
