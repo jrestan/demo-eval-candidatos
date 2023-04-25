@@ -59,7 +59,7 @@
         </div>
         <div class="row" style="min-height: 30px;">
             <div class="col-sm-1" style="width: 120px;">
-                {{ senInfoFinanciera.document_type }}
+                {{ obtenerTipoDocumento(senInfoFinanciera.document_type) }}
             </div>
             <div class="col-sm-11 fw-bold" style="width: 600px;">
                 {{ senInfoFinanciera.document_number }}
@@ -110,7 +110,7 @@
             *ngFor="let item of senInfoFinanciera.financial_health; let i=index">
 
             <div class="col border d-flex align-items-center">
-                {{ item.document_type+' '+item.document_number }}  <!-- DNI 48148549 -->
+                {{ obtenerTipoDocumento(item.document_type)+' '+item.document_number }}  <!-- DNI 48148549 -->
             </div>
             <div class="col border d-flex align-items-center justify-content-center">
                 {{ item.financial_summary.processed_at||'' | date:'dd/MM/yyyy' }}  <!-- 22/03/2023 -->
@@ -152,15 +152,15 @@
             <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
                 Genero
             </div>
-            <!-- <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
                 Digito Verificador
             </div>
-            <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
+            <!-- <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
                 Deuda Total
-            </div>
+            </div> -->
             <div class="col border text-white text-center d-flex align-items-center justify-content-center" >
                 Digito Verificador Anterior
-            </div> -->
+            </div>
         </div>
 
         <div class="row" style="min-height: 40px;">
@@ -171,15 +171,15 @@
             <div class="col border d-flex align-items-center justify-content-center">
                 {{ senInfoFinanciera.gender }}
             </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                
+            </div>
             <!-- <div class="col border d-flex align-items-center justify-content-center">
                 XXXXXXX
-            </div>
-            <div class="col border d-flex align-items-center justify-content-center">
-                XXXXXXX
-            </div>
-            <div class="col border d-flex align-items-center justify-content-center">
-                XXXXXXX
             </div> -->
+            <div class="col border d-flex align-items-center justify-content-center">
+                
+            </div>
         </div>
     </div>
     <!-- FIN DE DATOS GENERALES -->

@@ -264,6 +264,15 @@ export class SenInfoFinancieraComponent {
     return style;    
   }
 
+  obtenerTipoDocumento(tipodoc: string): string{
+    let _tipodoc: string = tipodoc;
+    switch(tipodoc){
+      case 'D': _tipodoc='DNI'; break;
+      case 'R': _tipodoc='RUC'; break;
+    }
+    return _tipodoc;
+  }
+
   validarSoloNumeros(e: any): boolean {
     this.errorBusqueda = false;
     const charCode = e.which ? e.which : e.keyCode;
