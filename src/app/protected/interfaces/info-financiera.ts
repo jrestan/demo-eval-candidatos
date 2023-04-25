@@ -6,7 +6,9 @@ export interface ISenInfoFinResponse {
     gender:           string;
     general_data:     GeneralData | any;
     financial_health: FinancialHealth[] | any;
+    authorized_of:    AuthorizedOf[] | any;
 }
+
 
 export interface FinancialHealth {
     document_type:      string;
@@ -37,7 +39,7 @@ export interface FinancialSummary {
     mark:                     string;
     score_current:            string;
     score_prev:               string;
-    score_both:               string[];
+    score_both:               string;
     processed_at:             Date;
     debts_total:              number;
     debts_microfinance_total: number;
@@ -61,6 +63,18 @@ export interface GeneralData {
     asiento:         string;
     address:         string;
 }
+
+export interface AuthorizedOf {
+    document_type: string;
+    fullname:      string;
+    score_current: string;
+    score_prev:    string;
+    score_both:    string;
+    created_at:    Date;
+    charge:        string;
+    status:        string;
+}
+
 
 
 export interface ISemaforoRes {
