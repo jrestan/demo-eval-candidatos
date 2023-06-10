@@ -15,6 +15,8 @@ export class AuthService {
   private baseUrl: string = environment.baseUrl;   //baseUrl es la url del backend
   private _usuario!: Usuario;
 
+  
+  
   get usuario(){
     return { ...this._usuario}
   }
@@ -72,9 +74,9 @@ export class AuthService {
             }
             */
           //}
-          console.log("resp", resp);
-          console.log("resp error", resp.error);
-          console.log("resp token", resp.token);
+          //console.log("resp", resp);
+          //console.log("resp error", resp.error);
+          //console.log("resp token", resp.token);
           
         }),
         map(resp=> true /*resp.ok*/),
@@ -90,18 +92,18 @@ export class AuthService {
     
     const myRawToken = sessionStorage.getItem('token')||'';  //localStorage.getItem('token')||'';
 
-    console.log("myRawToken",myRawToken);
+    //console.log("myRawToken",myRawToken);
     
     const helper = new JwtHelperService();
 
     const decodedToken = helper.decodeToken(myRawToken);
-    console.log("decodedToken",decodedToken);
+    //console.log("decodedToken",decodedToken);
 
     const expirationDate = helper.getTokenExpirationDate(myRawToken);
-    console.log("expirationDate",expirationDate);
+    //console.log("expirationDate",expirationDate);
 
     const isExpired = helper.isTokenExpired(myRawToken);
-    console.log("isExpired",isExpired);
+    //console.log("isExpired",isExpired);
     
     return of(!isExpired);
     /*
@@ -126,4 +128,23 @@ export class AuthService {
     sessionStorage.removeItem('token');
     //localStorage.clear();
   }
+
+  obtenerTipoUsuarioLogueado(): string{
+
+    const myRawToken = sessionStorage.getItem('token')||'';
+
+    if(myRawToken!=''){
+      const helper = new JwtHelperService();
+    
+      const decodedToken = helper.decodeToken(myRawToken);
+      //console.log("decodedToken",decodedToken);
+      
+      if(decodedToken){
+        return decodedToken?.profile[0]||'';
+      }
+    }
+    
+    return '';
+  }
+
 }

@@ -1,7 +1,531 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@coreui/coreui/dist/css/coreui.min.css';
+/* @import '@coreui/coreui/dist/css/coreui.min.css'; */
+
+/*
 .dual {
     background: linear-gradient(to right, var(--fa-primary-color) 50%, var(--fa-secondary-color) 50%);
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+*/
+
+/************** SEMAFORO **************/
+
+.semaforo-exterior {
+  box-sizing: content-box;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  border: 3px solid;
+  border-color: var(--fa-secondary-color) var(--fa-secondary-color) var(--fa-primary-color) var(--fa-primary-color) ;
+  /* box-shadow: 0 0px 3px var(--secondary-color); */
+  box-shadow: 0 0px 2px var(--fa-primary-color), 0 0px 2px var(--fa-secondary-color);
+  transform: rotate(45deg);
+}
+.semaforo-exterior.med {
+  width: 34px;
+  height: 34px;
+}
+.semaforo-exterior.sm {
+  width: 30px;
+  height: 30px;
+}
+.semaforo-exterior.ssm {
+  border: 2px solid;
+  border-color: var(--fa-secondary-color) var(--fa-secondary-color) var(--fa-primary-color) var(--fa-primary-color) ;
+  /* box-shadow: 0 0px 3px var(--secondary-color); */
+  box-shadow: 0 0px 2px var(--fa-primary-color), 0 0px 2px var(--fa-secondary-color);
+  
+  width: 20px;
+  height: 20px;
+}
+
+.semaforo-interior {
+  box-sizing: content-box;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-image: linear-gradient(to right, var(--fa-primary-color), var(--fa-primary-color) 50%, var(--fa-secondary-color) 50%, var(--fa-secondary-color));
+  box-shadow: 0 0px 2px var(--secondary-color);
+  transform: rotate(-45deg);
+}
+.semaforo-interior.med {
+  width: 30px;
+  height: 30px;
+}
+.semaforo-interior.sm {
+  width: 26px;
+  height: 26px;
+}
+.semaforo-interior.ssm {
+  width: 16px;
+  height: 16px;
+}
+
+/*************************************/
+
+/*
+.semaforo {
+  width: var(--size-circle);
+  height: var(--size-circle);
+  border-radius: 50%;
+  background-image: linear-gradient(to right, var(--fa-primary-color), var(--fa-primary-color) 50%, var(--fa-secondary-color) 50%, var(--fa-secondary-color));
+  //transform: rotate(45deg);
+}*/
+
+
+/******************* PANELES ***********************/
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+/*-------NAV BAR(oswaldo)------*/
+.navbar {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+.navbar h1{
+  color: #fff;
+  font-size: 24px;
+  padding-left: 21px;
+  padding-top: 5px;
+}
+.navbar .nav-item a{
+  font-size: 19px;
+  /* font-weight: 300; */
+}
+.navbar .nav-item .nav-link {
+  padding-right: 0.8rem;
+  padding-left: 0.8rem;
+}
+/*--------*/
+.panel-nav {
+  height: auto;
+  /* background-color: #ccc; */
+  border-width: 0px 0px 0.5px 0px;
+  border-style: solid;
+  border-color: #ffffff69;
+}
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.contenedor-paneles {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+.contenedor-paneles-paginas {
+  display: flex;
+  height: 100%;
+}
+.panel_left {
+  width: 15%; 
+  min-width: 300px; 
+  background-color: #F4F6F6;
+
+  height: 100%;
+  overflow-y: auto;
+  /* border: 1px solid #aaa; */
+  /* border-right: 1px solid #aaa; */
+}
+.panel_left::-webkit-scrollbar {
+  /* display: none; */
+  /* Ancho del scrollbar */
+  width: 4px;
+}
+.panel_left::-webkit-scrollbar-track {
+  /* Color del fondo del scrollbar */
+  background-color: #F4F6F6; 
+}
+.panel_left::-webkit-scrollbar-thumb {
+  /* Color del thumb (control deslizante) del scrollbar */
+  /* background-color: #2E8FE3;  */
+  background-color: #6265679c;
+}
+.panel_main {
+  width: 85%; 
+  /* background-color: #FFFFFF; */
+
+  height: 100%;
+  overflow-y: auto;
+  /* font-size: 14px; */
+  /* padding: 0px 25px !important; */
+}
+.titleopc {
+  display: none;
+}
+
+/**************************************************************/
+
+
+/************** LEYENDA **************/
+
+.styleColContRep{
+  background-color: #0393DD; height: 50px; font-size: 16px;     
+}
+
+.styleColSeccSide{
+  background-color: #D2D2D7; height: 50px; font-size: 16px;
+}
+
+/************** CONTENIDO **************/
+
+.styleCamposDatosPrin{
+  /* background-color: #A6ACAF; */
+  background-color: #e8eaea;
+  /* color: #0a5b89 !important; */
+  color: #06307a !important;
+  font-weight: 600 !important;
+  font-size: 14px;
+}
+.styleColHead1{
+  /* background-color: #1F618D;  */
+  min-height: 35px;
+  background-color: #b4daf5;
+  color: #06307a;
+  font-weight: 600 !important;
+  font-size: 14px;
+}
+.styleColHead2{
+  /* background-color: #626567;  */
+  min-height: 35px;
+  background-color: #c8e5fb;
+  /* color: #0a5b89 !important; */
+  color: #06307a !important;
+  font-weight: 600 !important;
+  font-size: 14px;
+}
+.styleColHead3 {
+  /* background-color: #A6ACAF;  */
+  min-height: 35px;
+  background-color: #e8eaea;
+  /* color: #0a5b89 !important; */
+  color: #06307a !important;
+  font-weight: 600 !important;
+  font-size: 14px;
+}
+.styleColHead4 {
+  /* background-color: #A6ACAF;  */
+  min-height: 35px;
+  background-color: #e8eaea !important;;
+  /* color: #0a5b89 !important; */
+  color: #06307a !important;
+  /* font-weight: 600 !important; */
+  font-size: 11px;
+  padding-top: 2px !important; 
+  padding-bottom: 2px !important;
+  padding-left: 3px !important;
+  padding-right: 3px !important;
+}
+.styleCont {
+  font-size: 14px;
+}
+.styleContLR{
+  font-size: 12px;
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+}
+.styleLink{
+  text-decoration: none; 
+  color: inherit;
+}
+.styleLink:hover {
+  text-decoration: underline; /* Subrayado al pasar el mouse */
+  color: blue; /* Color al pasar el mouse */
+}
+.styleTextInputForms{
+  font-size: 15px;
+}
+.styleButtons{
+  font-size: 14px;
+}
+
+
+/*********** MODIFICACIONES DE OSWALDO AL CONTENIDO *****************/
+/*
+.panel_main.dg_panel_main{
+  font-size: 14px;
+  padding: 0px 25px !important;
+}
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container{ 
+  margin: 10px 0px;  esto hay que comentar
+}
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row.dg_search{ 
+  background-color: #daecfa !important;
+  min-height: 60px;
+}
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row.styleColHead1{
+  background-color: #0393DD;
+  min-height: 35px;
+}
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row.styleColHead3{
+  background-color: #67b7f2;
+}
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row .styleCamposDatosPrin {
+  background-color: #2b77c1;
+}
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row.styleColHead2{
+  background-color: #2b77c1;
+}*/
+
+.panel_main.dg_panel_main {
+  /* font-size: 14px; */
+  padding: 0px 25px !important;
+  /*Esto estaba como 50 se actulizo a 25*/
+}
+
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container {
+  /* margin: 10px 0px; */
+}
+
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row.dg_search {
+  background-color: #daecfa !important;
+  min-height: 60px;
+}
+
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row.styleColHead1 {
+  /*background-color: #c8e5fb;*/
+  
+  /*background-color: #b4daf5;
+  min-height: 35px;
+  color: #06307a
+  */
+}
+
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row.styleColHead1 .text-white {
+  /*
+  color: #06307a !important;
+  font-weight: 600 !important;
+  */
+  /*margin: 8px 0px;
+  line-height: 16px;*/
+}
+
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row.styleColHead2 {
+  /*
+  background-color: #c8e5fb;
+  */
+}
+
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row.styleColHead2 .text-white {
+  /*
+  color: #0a5b89 !important;
+  font-weight: 600 !important;
+  */
+  /*argin: 8px 0px;*/
+  /*line-height: 16px;*/
+}
+
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row.styleColHead3 {
+  /*
+  background-color: #e8eaea;
+  */
+}
+
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row.styleColHead3 .text-white {
+  /*
+  color: #0a5b89 !important;
+  font-weight: 600 !important;
+  */
+  /*margin: 8px 0px;*/
+  /*line-height: 16px;*/
+}
+
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row .styleCamposDatosPrin {
+  /*
+  background-color: #e8eaea;
+  */
+}
+
+.contenedor-paneles-paginas .panel_main.dg_panel_main .container .row .styleCamposDatosPrin.text-white {
+  /*
+  color: #0a5b89 !important;
+  font-weight: 600 !important;
+  */
+  /*padding: 8px 10px;*/
+  /*line-height: 16px;*/
+}
+
+
+
+/**************************************************************/
+
+
+/*---SOCIAL--*/
+#footer_sub_nav {
+  float: right;
+  max-width: 879px;
+  margin-right: 50px;
+  /*padding: 25px 0 10px;*/
+}
+#footer_logo {
+  float: left;
+  padding: 10px 50px;
+  text-align: left;
+  font-size: 13px;
+}
+#footer_logo a{
+  text-decoration: none;
+}
+.footer_social {
+  float: left;
+}
+ul.social-ic-icons {
+  text-align: center;
+  float: right;
+}
+ul.social-ic-icons li {
+  display: inline-block;
+}
+ul.social-ic-icons li a{
+  margin: 0px 10px;
+}
+ul.social-ic-icons li a span {
+  background: url(https://www.abaroliperu.com/wp-content/themes/aba_template/images/img-sprite.png) -180px -16px;
+  width: 25px;
+  height: 25px;
+  display: block;
+}
+/*--*/
+/*************** FOOTER **********************/
+/*--------------*/
+.footer_log{
+  height: 120px;
+  background-color: #fff;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  padding-top: 10px;
+  z-index: 100000;
+}
+
+#footer_logo .logos{
+
+}
+#footer_logo .logos .left{
+  float: left;
+  margin: 10px 0px;
+  margin-right: 20px;
+}
+.footer_home{
+  float: left;
+  width: 100%;
+  height: fit-content;
+}
+.bl_izq{
+  float: left;
+  width:30%;
+  height: 100px;
+}
+.bl_der{
+  float: left;
+  width:70%; 
+  background-color: #fff!important;
+  padding-bottom: 50px;
+  /*height: 100px;*/
+}
+.footer_line{
+  background: #d0cdcd;
+  height: 1px;
+  width: calc(100% - 100px);
+  margin: 0px 50px 15px 50px;
+}
+
+/*-------FOOTER-------*/  /*Footer para las paginas*/
+.footer_line.page{ 
+  width: calc(100%);
+  margin: 0px 0px 30px 0px;
+}
+#footer_logo.page{
+  padding: 0px 0px 50px 0px;
+}
+#footer_sub_nav.page {
+  margin-right: 0px;
+}
+
+/************************************************/
+
+
+
+.bar_label{
+  color:#0394dd;
+  font-size: 22px;
+}
+.bar_label h1{
+  color:#0394dd;
+  font-size: 22px;
+}
+
+
+
+/* ---- Responsive */
+
+@media (max-width: 1260px) {
+  
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (max-width: 1200px) {
+
+}
+/* Large devices (desktops, 992px and up)*/
+@media (max-width: 992px) { 
+  .panel_left {
+    width: 0%;
+    min-width: 0px;
+  }
+  .panel_left::-webkit-scrollbar {
+    display: none;
+  }
+  .panel_main {
+    width: 100%;
+  }
+
+  .titleopc {
+    display: inherit;
+  }
+
+}
+/* Medium devices (tablets, 768px and up)*/
+@media (max-width: 768px) {
+  
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+
+  .semaforo-exterior.sm {
+    border: 2px solid;
+    border-color: var(--fa-secondary-color) var(--fa-secondary-color) var(--fa-primary-color) var(--fa-primary-color) ;
+    /* box-shadow: 0 0px 3px var(--secondary-color); */
+    box-shadow: 0 0px 2px var(--fa-primary-color), 0 0px 2px var(--fa-secondary-color);
+    
+    width: 20px;
+    height: 20px;
+  }
+  .semaforo-interior.sm {
+    width: 16px;
+    height: 16px;
+  }
+
+  .semaforo-exterior.med {
+    width: 30px;
+    height: 30px;
+  }
+  .semaforo-interior.med {
+    width: 26px;
+    height: 26px;
+  }
+    
+}
+
+/* ---- Responsive */
+
+

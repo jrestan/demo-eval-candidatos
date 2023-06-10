@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+
+body {
+    background-position: center;
+    background-size: cover;
+    padding-top: 30px;
+    padding-bottom: 160px !important;
+    font-family: 'Source Sans Pro', sans-serif;
+    /* background: rgb(40,149,214);
+    background: linear-gradient(158deg, rgba(40,149,214,1) 0%, rgba(9,36,101,0.9948354341736695) 70%); */
+    background-image: url(../../../../assets/images/bg_login.png);
+}
+
+
+.form-signin {
+    max-width: 400px !important;
+    padding: 30px 40px !important;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.form-signin h1 {
+    font-size: 22px;
+    color: #afafaf;
+}
+.form-signin h5 {
+    text-align: left;
+    font-size: 18px;
+    color: #0394dd;
+}
+.form-signin .ico{
+    margin-top: -53px;
+}
+.form-signin input{
+    /* color: #999; */
+}
+.form-floating>label {
+    color: #999;
+}
+
+.checkbox.mb-3{
+    text-align: right !important;
+}
+.linea_celeste_titu{
+    height: 6px;
+    background-color: #0394dd;
+    border-radius: 3px;
+    margin: 10px 20px 30px 20px;
+}
+.linea_celeste_ico{
+    height: 2px;
+    background-color: #0394dd;
+    border-radius: 1px;
+    margin: 10px 0px;
+}
+.btn-lg {
+    /* --bs-btn-color: #fff !important;
+    --bs-btn-bg: #0394dd !important; */
+    background-color: #0394dd;
+    border-color: #0394dd;
+}
+.btn-lg:hover {
+    background-color: #0673aa;
+    border-color: #0673aa;
+}
+
+
+
+
+.footer_log{
+    height: 120px;
+    background-color: #fff;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    padding-top: 10px;
+    z-index: 100000;
+}

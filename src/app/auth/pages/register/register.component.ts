@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import Swal from 'sweetalert2';
+//import Swal from 'sweetalert2';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -38,7 +38,7 @@ export class RegisterComponent {
           this.router.navigateByUrl('/dashboard');
         }else{
           //TODO: mostrar mensaje de error
-          Swal.fire('Error', result, 'error');
+          //Swal.fire('Error', result, 'error');
         }
       });
 

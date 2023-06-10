@@ -5,8 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {IconModule, IconSetService} from "@coreui/icons-angular";
-import {ButtonModule} from "@coreui/angular";
+// import {IconModule, IconSetService} from "@coreui/icons-angular";
+// import {ButtonModule} from "@coreui/angular";
 
 @NgModule({
   declarations: [
@@ -15,12 +15,13 @@ import {ButtonModule} from "@coreui/angular";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
 
-    IconModule,
-    ButtonModule
+    // IconModule,
+    // ButtonModule
   ],
-  providers: [IconSetService],
+  //providers: [/*IconSetService*/],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

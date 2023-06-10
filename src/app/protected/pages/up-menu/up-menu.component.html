@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #042162;">
+<!-- <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #042162;"> -->
+<nav class="navbar navbar-expand-md navbar-dark" >
   <div class="container-fluid">
 
     <!-- <a class="navbar-brand" href="#">Navbar</a> -->
@@ -8,12 +9,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <h1 class="page_title">Junta Nacional de Justicia</h1> <!-- cam_100523-->
+
     <div class="collapse navbar-collapse flex-grow-1 text-right" id="navbarSupportedContent">
       <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0"> -->
       <ul class="navbar-nav ms-auto flex-nowrap">
 
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./home">Home</a>
+          <a class="nav-link active" aria-current="page" href="./home">Inicio</a>
         </li>
 
         <!-- <li class="nav-item">
@@ -27,7 +30,8 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="./seninfofin">Información Financiera</a></li>
-            <li><a class="dropdown-item" href="./sensanosce">Sancionados OSCE</a></li>
+            <li><a class="dropdown-item" href="./senlisrestric">Listas Restrictivas - Medios</a></li>
+            <!-- <li><a class="dropdown-item" href="./sensanosce">Sancionados OSCE</a></li> -->
             <!-- <li><hr class="dropdown-divider"></li> -->
           </ul>
         </li>
@@ -35,7 +39,7 @@
         <!-- Menu Poder Judicial -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Poder Judicial
+            Perfil Poder Judicial
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
             <li><a class="dropdown-item" href="./pjprocdisc">Procesos disciplinarios</a></li>
@@ -46,7 +50,7 @@
         <!-- Menu Ministerio Publico -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Ministerio Publico
+            Perfil Ministerio Publico
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
             <li><a class="dropdown-item" href="./mpprocdisc">Procesos disciplinarios</a></li>
@@ -56,7 +60,7 @@
         <!-- Menu Servir -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Ministerio Publico
+            Perfil Servir
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
             <li><a class="dropdown-item" href="./sersanciones">Sanciones</a></li>
@@ -65,6 +69,27 @@
 
         <li class="nav-item">
           <a class="nav-link" href="#" (click)="logout()" >Cerrar Sesión</a>
+        </li>
+
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear icon" viewBox="0 0 16 16">
+              <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+              <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+            </svg>
+          </a>
+        </li> -->
+
+        <li class="nav-item dropdown" *ngIf="isAdmin">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear icon" viewBox="0 0 16 16">
+              <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+              <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+            </svg>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown5">
+            <li><a class="dropdown-item" href="./usuarios">Mantenimiento de usuarios</a></li>
+          </ul>
         </li>
         
         <!-- <li class="nav-item">

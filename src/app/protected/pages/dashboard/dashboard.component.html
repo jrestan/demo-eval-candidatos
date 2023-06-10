@@ -12,9 +12,26 @@
 
 <pre> {{ usuario | json }} </pre> -->
 
-<app-up-menu></app-up-menu>
 
-<router-outlet></router-outlet>
+
+
+<!-- <body class="bg_home"> -->
+<body class="bh_home">
+
+<div class="contenedor-principal">
+    <div class="panel-nav">
+        <app-up-menu></app-up-menu>
+    </div>
+    <div class="contenedor-paneles">
+
+        <div class="panel_main" style="width: 100%;">
+            <router-outlet></router-outlet>
+        </div>
+        
+    </div>
+</div>
+
+</body>
 
 
 <!-- <button (click)="logout()">

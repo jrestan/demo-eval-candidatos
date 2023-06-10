@@ -7,7 +7,9 @@ import { RegisterComponent } from './pages/register/register.component';
 import { MainComponent } from './pages/main/main.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+/*
 import {
+  //AlertModule,
   AvatarModule, 
   ButtonDirective,
   ButtonGroupModule,
@@ -21,8 +23,9 @@ import {
   TabsModule,
   WidgetModule
 } from "@coreui/angular";
-import {IconModule} from '@coreui/icons-angular';
 
+import {IconModule} from '@coreui/icons-angular';
+*/
 
 @NgModule({
   declarations: [
@@ -33,21 +36,23 @@ import {IconModule} from '@coreui/icons-angular';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
 
-    CardModule,
-    NavModule,
-    TabsModule,
-    GridModule,
-    ProgressModule,
-    FormModule,
-    ButtonGroupModule,
+/*    //AlertModule,
     AvatarModule,
-    TableModule,
-    WidgetModule,
+    ButtonDirective,
+    ButtonGroupModule,
+    CardModule,
     DropdownModule,
-    IconModule,
-    ButtonDirective
+    FormModule,
+    GridModule,
+    NavModule,
+    ProgressModule,
+    TableModule,
+    TabsModule,
+    WidgetModule,
+
+    IconModule*/
   ]
 })
 export class AuthModule { }

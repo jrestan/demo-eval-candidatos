@@ -1,0 +1,257 @@
+<div class="panel_main dg_panel_main" style="width: 100%; background-color: #FFFFFF;">
+    
+    <br>
+
+    <div class="container">
+
+        <div class="row styleColHead2">
+            <div [class]="strClassColHead2">
+                <h6 class="mt-2">Mantenimiento de Usuarios</h6>
+
+                <div class="col d-flex align-items-center justify-content-end mt-2 mb-2">
+                    <button type="button" class="btn btn-outline-primary float-end" style="font-size: 14px;"
+                        data-bs-toggle="modal" data-bs-target="#userDataModal" (click)="onNewUser()">
+                        <i class="fa-solid fa-user-plus"></i> Agregar
+                    </button>
+                </div>
+            </div>
+        </div>
+            
+        <div class="row styleColHead3">
+            <div [class]="strClassColHead3+cabecera[1]"
+                *ngFor="let cabecera of cabeceraUsuarios;">
+                {{cabecera[0]}}
+            </div>
+        </div>
+        
+        <div class="row" style="min-height: 40px;"
+            *ngIf="errorBusqueda||inibusqueda||sinDatosEncontrados">
+
+            <div class="col border d-flex align-items-center justify-content-center">
+
+                <div *ngIf="errorBusqueda" class="d-flex align-items-center justify-content-center">
+                    <i class="fa fa-warning me-2"></i>
+                    <div>
+                    {{messageError}}
+                    </div>
+                </div>
+                <div *ngIf="inibusqueda" class="d-flex align-items-center justify-content-center">
+                    <div class="spinner-border spinner-border-sm me-2" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div>
+                        Buscando Información...
+                    </div>
+                </div>
+                <div *ngIf="sinDatosEncontrados" class="d-flex align-items-center justify-content-center styleCont">
+                    {{msgSinInformacion}}
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="datosEncontrados">
+            <div class="row" style="min-height: 40px;"
+                *ngFor="let user of users.data || []">
+                
+                <div [class]="classColContent_Center+cabeceraUsuarios[0][1]">
+                    {{user.id}}
+                </div>
+                <div [class]="classColContent_Left+cabeceraUsuarios[1][1]">
+                    {{user.fullname}}
+                </div>
+                <div [class]="classColContent_Center+cabeceraUsuarios[2][1]">
+                    {{user.username}}
+                </div>
+                <!-- <div [class]="classColContent_Center">
+                    {{"*********"}}
+                </div> -->
+                <div [class]="classColContent_Center">
+                    {{obtenerTipoUsuario(user.profiles[0])}}
+                </div>
+                <div [class]="classColContent_Center">
+                    {{obtenerDescStatus(user.status)}}
+                </div>
+                <div [class]="classColContent_Center">
+                    <a href="" class="me-3" title="Editar Usuario" data-bs-toggle="modal" data-bs-target="#userDataModal" (click)="onEditUser(user.id)" ><i class="fa-solid fa-user-pen"></i></a>
+                    <a href="" class="me-3" title="Remover Usuario" data-bs-toggle="modal" data-bs-target="#msgConfirmDelete" (click)="onDelete(user.id)"><i class="fa-solid fa-user-xmark"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row" *ngIf="datosEncontrados">
+            <div class="col" style="padding-left: 0px; padding-right: 0px;">
+                <button type="button" class="btn btn-outline-primary me-1" (click)="onFirst()" [disabled]="users.page===1"> <i class="fa-solid fa-backward-fast"></i> </button>
+                <button type="button" class="btn btn-outline-primary me-1" (click)="onPrev()" [disabled]="!this.linkPrev">  <i class="fa-solid fa-backward"></i> </button>
+                <button type="button" class="btn btn-outline-primary me-1" (click)="onNext()" [disabled]="!this.linkNext"> <i class="fa-solid fa-forward"></i> </button>
+                <button type="button" class="btn btn-outline-primary me-1" (click)="onLast()" [disabled]="users.page===users.pages"> <i class="fa-solid fa-forward-fast"></i> </button>
+            </div>
+        </div>
+                
+    </div>
+
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+    
+                <div class="modal-header" style="height: 45px;">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Olvidó su Contraseña?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="min-height: 65px;">
+                    <i class="fa fa-circle-info me-2"></i>
+                    Por favor póngase en contacto con el administrador del sistema.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- data-bs-backdrop="static" data-bs-keyboard="false" -->
+    <div class="modal fade" id="userDataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header" style="height: 50px;">
+                    <h5 class="modal-title" id="staticBackdropLabel" style="color: #0394dd;">{{(newDataUser)?'Agregar Nuevo Usuario':'Editar Información de Usuario'}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div *ngIf="loadDataUser; else nodata">
+                    <form autocomplete="off"
+                        [formGroup]="miFormulario">
+
+                        <div class="modal-body">
+                            <div class="row flex align-items-center styleTextInputForms">
+                                <label class="col-sm-3 col-form-label">Nombres y apellidos</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" formControlName="fullname" autocomplete="new-password" [readOnly]="!newDataUser" maxlength="50">
+                                </div>
+                            </div>
+                            
+                            <div class="mt-2 row flex align-items-center styleTextInputForms">
+                                <label class="col-sm-3 col-form-label">Usuario</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" formControlName="nameuser" autocomplete="new-password" [readOnly]="!newDataUser" maxlength="20">
+                                </div>
+                            </div>
+                            <div class="row flex align-items-center flex-row-reverse styleTextInputForms">
+                                <div class="col-sm-9">
+                                    <span *ngIf="miFormulario?.controls?.['nameuser']?.invalid && miFormulario?.controls?.['nameuser']?.touched" class="form-text text-danger">
+                                        El usuario debe tener al menos 2 caracteres y contener solo letras y/o números
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3 row flex align-items-center styleTextInputForms">
+                                <label class="col-sm-3 col-form-label">Contraseña</label>
+                                <div class="col-sm-9">
+                                    <input type="password" (keyup)="validarPresKey($event)" class="form-control" formControlName="claveac" autocomplete="new-password" maxlength="20">
+                                </div>
+                                
+                            </div>
+                            <div class="row flex align-items-center flex-row-reverse styleTextInputForms">
+                                <div class="col-sm-9">
+                                    <span *ngIf="miFormulario?.controls?.['claveac']?.invalid && miFormulario?.controls?.['claveac']?.touched" class="form-text text-danger">
+                                        La contraseña debe tener al menos 8 caracteres y contener solo letras y/o números
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3 mb-3 row flex align-items-center styleTextInputForms">
+                                <label class="col-sm-3 col-form-label">Perfil</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select me-2" style="width: 250px;" formControlName="profile">
+                                        <option [value]="obtenerIdUsuario('ADMIN')">{{obtenerTipoUsuario('ADMIN')}}</option>
+                                        <option [value]="obtenerIdUsuario('CONSUL')">{{obtenerTipoUsuario('CONSUL')}}</option>
+                                        <option [value]="obtenerIdUsuario('CONIMP')">{{obtenerTipoUsuario('CONIMP')}}</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control" formControlName="profile"> -->
+                                </div>
+                            </div>
+                            <div class="mb-3 row flex align-items-center styleTextInputForms">
+                                <label class="col-sm-3 col-form-label">Status</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select me-2" style="width: 250px;" formControlName="status">
+                                        <option [value]="'ACTIVE'">{{obtenerDescStatus('active')}}</option>
+                                        <option [value]="'INACTIVE'">{{obtenerDescStatus('inactive')}}</option>
+                                    </select>
+
+                                    <!-- <input type="text" class="form-control" formControlName="status"> -->
+                                </div>
+                            </div>
+                            <div *ngIf="errorSaveUser" style="color: red;">
+                                {{msgErrorDataUser}}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary styleButtons" [disabled]="miFormulario.invalid" (click)="onSave()"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+                            <button id="btnclose" type="button" class="btn btn-secondary styleButtons" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+                <ng-template #nodata>
+                    <div class="modal-body">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="spinner-border spinner-border-sm me-2" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div>
+                                Buscando Información...
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnclose" type="button" class="btn btn-secondary styleButtons" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="msgConfirmDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header" style="height: 50px;">
+                    <h5 class="modal-title" id="confirmDeleteLabel" style="color: #0394dd;">Confirmar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <div *ngIf="!loadDataUser;else msgUserdelete" class="d-flex align-items-center justify-content-center">
+                        <div class="spinner-border spinner-border-sm me-2" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div>
+                            Buscando Información...
+                        </div>
+                    </div>
+                    
+                    <ng-template #msgUserdelete>
+                        Se eliminará al usuario <b>{{(userData)?userData.fullname:''}}</b> del sistema.
+                        <br>
+                        ¿Desea continuar?
+                    </ng-template>
+
+                    <div *ngIf="errorDelUser" style="color: red;">
+                        <br>
+                        {{msgErrorDataUser}}
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button id="btnOkDelete" type="button" class="btn btn-primary styleButtons" [disabled]="!loadDataUser||initDelUser" (click)="onDeleteConfirmed(userData.id)"><i class="fa-solid fa-user-xmark"></i> Si</button>
+                    <button id="btncloseDelete" type="button" class="btn btn-secondary styleButtons" data-bs-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

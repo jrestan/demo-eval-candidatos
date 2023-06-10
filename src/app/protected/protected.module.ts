@@ -19,7 +19,9 @@ import { SerSancionesComponent } from './pages/ser-sanciones/ser-sanciones.compo
 //Cambiar el locale de la app
 import localeEsPe from '@angular/common/locales/es-PE';
 //import localeFr from '@angular/common/locales/fr';
-import {registerLocaleData} from '@angular/common'
+import {registerLocaleData} from '@angular/common';
+import { SenListaRestricComponent } from './pages/sen-lista-restric/sen-lista-restric.component';
+import { UsersComponent } from './pages/users/users.component'
 registerLocaleData(localeEsPe);
 //registerLocaleData(localeFr);
 
@@ -41,7 +43,9 @@ import { AppComponent } from '../app.component';
     PjProcDisciplinComponent,
     PjRegDeudoresComponent,
     MpProcDisciplinComponent,
-    SerSancionesComponent
+    SerSancionesComponent,
+    SenListaRestricComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,

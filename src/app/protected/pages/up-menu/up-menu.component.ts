@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
+import { USER_TYPES } from 'src/app/common/constants/common.constants';
+
 @Component({
   selector: 'app-up-menu',
   templateUrl: './up-menu.component.html',
@@ -9,8 +11,15 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class UpMenuComponent {
 
+  
+  isAdmin: boolean = false;
+
   constructor(private router: Router,
-    private authService: AuthService) {}
+    private authService: AuthService) {
+
+      const tipoUser = authService.obtenerTipoUsuarioLogueado();
+      this.isAdmin = (tipoUser===USER_TYPES.ADMIN);
+    }
 
 
   logout(){

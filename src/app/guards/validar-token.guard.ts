@@ -19,7 +19,7 @@ export class ValidarTokenGuard implements CanActivate, CanLoad {
   }*/
   canActivate(): Observable<boolean> | boolean {
     
-    console.log('canActivate');
+    //console.log('canActivate');
     
     //return true;
     return this.authService.validarToken()
@@ -39,7 +39,7 @@ export class ValidarTokenGuard implements CanActivate, CanLoad {
   }*/
   canLoad(): Observable<boolean> | boolean {
 
-    console.log('canLoad');
+    //console.log('canLoad');
 
     //return true;
     return this.authService.validarToken()
